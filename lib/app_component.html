@@ -1,0 +1,40 @@
+<app-header></app-header>
+
+
+<div>
+    <div ALIGN="Center" style="margin:5px">
+
+        <material-input id="email"
+                        label="E-mail"
+                        type="email"
+                        required
+                        requiredErrorMsg="This input requires a value!">
+        </material-input>
+        <br>
+        <material-input id="password"
+                        label="Password"
+                        type="password"
+                        required
+                        requiredErrorMsg="This input requires a value!">
+        </material-input>
+        <br>
+        <material-radio>Keep Me Sign In</material-radio>
+        <material-button>Log In</material-button>
+
+    </div>
+</div>
+<div id="sign-in" *ngIf="dbService.user == null" align="center">
+
+    <material-button (trigger)="dbService.signIn()" class="loginbtn">Sign In with Google</material-button>
+
+</div>
+
+<div id="sign-out" *ngIf="dbService.user != null" align="center">
+
+    <img class="icon" [src]="dbService.user?.photoURL">
+
+    <div id="user-name">{{dbService.user?.displayName}}</div>
+
+    <material-button (trigger)="dbService.signOut()">Sign Out</material-button>
+
+</div>
